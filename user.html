@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website bán Thú cưng </title>
+    
+    <!-- Import Bootstrap và jQuery -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px;
+            text-align: center;
+        }
+        .product-card img {
+            max-height: 200px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .content-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Thanh điều hướng -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="data:image/png;base64,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" alt="Logo" width="40" height="40" class="me-2"> <!-- Add your logo here -->
+                Pet Shop
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('products')">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('warranty')">Chính sách bảo hành</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showOrderSection()">Đặt hàng & Thanh toán</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="switchToAdmin()">Chuyển sang Admin</a>
+                    </li>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Menu
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                      </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="product-list" class="row"></div>
+        <!-- Chính sách bảo hành -->
+        <div id="warranty" class="container content-section">
+            <h2 class="text-center">Chính sách bảo hành</h2>
+            <table class="table table-bordered text-center mt-4">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Loại thú cưng</th>
+                        <th>Thời gian bảo hành</th>
+                        <th>Điều kiện bảo hành</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chó</td>
+                        <td>65 ngày</td>
+                        <td>Đầy đủ giấy tờ và tiêm phòng</td>
+                    </tr>
+                    <tr>
+                        <td>Mèo</td>
+                        <td>60 ngày</td>
+                        <td>Đầy đủ giấy tờ và tiêm phòng</td>
+                    </tr>
+                    <tr>
+                        <td>Thú cưng khác</td>
+                        <td>50 ngày</td>
+                        <td>Đầy đủ giấy tờ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <!-- Đặt hàng & Thanh toán -->
+    <div id="order-section" class="container content-section" style="display: none;">
+        <h2 class="text-center">Đặt hàng & Thanh toán</h2>
+        <table class="table table-bordered text-center mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá tiền</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Tạo 10 hàng dữ liệu -->
+                <tr>
+                    <td>1</td>
+                    <td>SP25</td>
+                    <td>Chó bò Anh</td>
+                    <td>16.000.000 VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP001')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP001')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>SP26</td>
+                    <td>Golden Retriever</td>
+                    <td>20.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP002')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP002')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>SP27</td>
+                    <td>Chó Husky Sibir</td>
+                    <td>8.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP003')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP003')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>SP28</td>
+                    <td>Chó chăn cừu Đức</td>
+                    <td>20.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP004')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP004')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>SP29</td>
+                    <td>Dobermann</td>
+                    <td>20.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP005')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP005')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>SP30</td>
+                    <td>Shiba Inu</td>
+                    <td>30.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP006')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP006')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>SP31</td>
+                    <td>Mèo LaPerm</td>
+                    <td>20.000.000 VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP007')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP007')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>SP32</td>
+                    <td>Mèo Somali</td>
+                    <td>13.000.000</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP008')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP008')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>SP33</td>
+                    <td>Mèo Angora Thổ Nhĩ Kỳ</td>
+                    <td>35.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP009')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP009')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>SP34</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP010')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP010')">Hủy</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Đăng nhập -->
+    <div id="login-section" class="container text-center mt-5">
+        <h2>Đăng nhập</h2>
+        <input type="text" id="username" class="form-control mb-2" placeholder="Tên người dùng">
+        <input type="password" id="password" class="form-control mb-2" placeholder="Mật khẩu">
+        <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+        <p>Chưa có tài khoản? <a href="#" onclick="showRegister()">Đăng ký</a></p>
+    </div>
+
+    <!-- Form đăng ký -->
+    <div id="register-section" class="container text-center mt-5" style="display: none;">
+        <h2>Đăng ký</h2>
+        <input type="text" id="reg-username" class="form-control mb-2" placeholder="Tên người dùng">
+        <input type="password" id="reg-password" class="form-control mb-2" placeholder="Mật khẩu">
+        <button class="btn btn-success" onclick="register()">Đăng ký</button>
+        <p>Đã có tài khoản? <a href="#" onclick="showLogin()">Đăng nhập</a></p>
+    </div>
+    
+    <script>
+
+       
+
+        const apiUrl = "https://67e3dc7a2ae442db76d1ebaf.mockapi.io/mago";
+        let products = [];
+
+        function showSection(sectionId) {
+            $('.content-section').hide(); // Ẩn tất cả các phần nội dung
+            $('#' + sectionId).show(); // Hiển thị phần được chọn
+        }
+        function loadProducts() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    products = data;
+                    displayProducts(products);
+                });
+        }
+
+        function displayProducts(productArray) {
+            let productHtml = '';
+            productArray.forEach(product => {
+                const formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price); // Format price
+                productHtml += `
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="${product.image}" alt="Hình ảnh sản phẩm" class="img-fluid">
+                            <h5>${product.title}</h5>
+                            <p>${product.body}</p>
+                            <p>${formattedPrice}</p>
+                            <button class="btn btn-primary" onclick="buyProduct('${product.id}')">Mua</button> <!-- Add Buy button -->
+                        </div>
+                    </div>`;
+            });
+            $('#product-list').html(productHtml);
+        }
+
+        function buyProduct(productId) {
+            alert(`Bạn đã chọn mua sản phẩm với ID: ${productId}`);
+            // Add your logic for handling the purchase here
+        }
+
+        $(document).ready(loadProducts);
+        //đăng nhập và đăng ký 
+        let currentUser = null;
+
+function register() {
+    const username = document.getElementById('reg-username').value;
+    const password = document.getElementById('reg-password').value;
+    if (username && password) {
+        localStorage.setItem(username, password);
+        alert("Đăng ký thành công! Hãy đăng nhập.");
+        showLogin();
+    } else {
+        alert("Vui lòng nhập đầy đủ thông tin.");
+    }
+}
+
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const storedPassword = localStorage.getItem(username);
+
+    if (storedPassword && storedPassword === password) {
+        currentUser = username;
+        localStorage.setItem("user", username);
+        showContent();
+    } else {
+        alert("Sai tên đăng nhập hoặc mật khẩu");
+    }
+}
+
+function logout() {
+    currentUser = null;
+    localStorage.removeItem("user");
+    showLogin();
+}
+
+
+function showContent() {
+            document.getElementById("login-section").style.display = "none";
+            document.getElementById("register-section").style.display = "none";
+            document.querySelector("nav").style.display = "block";
+            document.querySelector(".content-section").style.display = "block";
+
+         
+        }
+
+function showLogin() {
+    document.getElementById("login-section").style.display = "block";
+    document.getElementById("register-section").style.display = "none";
+    document.querySelector("nav").style.display = "none";
+    document.querySelector(".content-section").style.display = "none";
+}
+
+function showRegister() {
+    document.getElementById("login-section").style.display = "none";
+    document.getElementById("register-section").style.display = "block";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    currentUser = localStorage.getItem("user");
+    if (currentUser) {
+        showContent();
+    } else {
+        showLogin();
+    }
+});
+
+function loadOrderTable() {
+    const orderTableBody = document.getElementById('order-table-body');
+    orderTableBody.innerHTML = ''; // Xóa nội dung cũ
+
+    // Tạo 10 hàng mẫu
+    for (let i = 1; i <= 10; i++) {
+        const row = `
+            <tr>
+                <td>${i}</td>
+                <td>SP00${i}</td>
+                <td>Sản phẩm ${i}</td>
+                <td>${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(100000 * i)}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" onclick="buyProduct('SP00${i}')">Mua</button>
+                    <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP00${i}')">Hủy</button>
+                </td>
+            </tr>
+        `;
+        orderTableBody.innerHTML += row;
+    }
+}
+
+function buyProduct(productId) {
+    alert(`Bạn đã mua sản phẩm: ${productId}`);
+}
+
+function cancelOrder(productId) {
+    alert(`Bạn đã hủy sản phẩm: ${productId}`);
+}
+
+// Hiển thị mục Đặt hàng & Thanh toán khi được chọn
+function showOrderSection() {
+    $('.content-section').hide(); // Ẩn tất cả các phần nội dung
+    $('#order-section').show(); // Hiển thị phần Đặt hàng & Thanh toán
+    loadOrderTable(); // Tải dữ liệu bảng
+}
+
+function switchToAdmin() {
+    alert("Chuyển sang giao diện Admin!");
+    // Thay đổi URL hoặc hiển thị giao diện Admin
+    window.location.href = "admin.html"; // Thay đổi đường dẫn đến trang admin
+}
+
+    </script>
+     <!-- Footer -->
+<footer class="bg-light text-dark mt-5 p-4">
+    <div class="container">
+        <div class="row">
+            <!-- Cột 1: Liên hệ -->
+            <div class="col-md-3">
+                <h5 class="fw-bold">LIÊN HỆ</h5>
+                <hr>
+                <p>📍 Trụ sở: số 1, phú Lãm, Hà Đông, Hà Nội</p>
+                <p>📍 Trại Giống:khu 3, Thị Trấn Thường Xuân, Thanh Hóa </p>
+                <p>📞 Hotline: 0974815206</p>
+                <p>🌐 Website: <a href="#">https://Petshop.com</a></p>
+                <p>📧 Email: Petshop@gmail.com</p>
+            </div>
+
+            <!-- Cột 2: Về chúng tôi -->
+            <div class="col-md-3">
+                <h5 class="fw-bold">VỀ CHÚNG TÔI</h5>
+                <hr>
+                <ul class="list-unstyled">
+                    <li><a href="#">Giới thiệu công ty</a></li>
+                    <li><a href="#">Cơ hội nghề nghiệp</a></li>
+                    <li><a href="#">Hợp tác kinh doanh</a></li>
+                    <li><a href="#">Cửa hàng phụ kiện</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 3: Chính sách -->
+            <div class="col-md-3">
+                <h5 class="fw-bold">CHÍNH SÁCH MUA HÀNG</h5>
+                <hr>
+                <ul class="list-unstyled">
+                    <li><a href="#">Mua trả góp</a></li>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Giao nhận & Thanh toán</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 4: Kết nối -->
+            <div class="col-md-3">
+                <h5 class="fw-bold">KẾT NỐI, THANH TOÁN</h5>
+                <hr>
+                <div>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" width="32"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" width="32"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="32"></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

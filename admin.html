@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website kinh doanh thú cưng </title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px;
+            text-align: center;
+        }
+        .product-card img {
+            max-height: 200px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .content-section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" onclick="showSection('home')">Pet Shop</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('products')">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('warranty')">Chính sách bảo hành</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('order')">Đặt hàng & Thanh toán</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chính sách bảo hành -->
+    <div id="warranty" class="container content-section">
+        <h2 class="text-center">Chính sách bảo hành</h2>
+        <p>Chúng tôi cam kết bảo hành sản phẩm trong vòng 12 tháng kể từ ngày mua.</p>
+
+        <!-- Bảng bảo hành -->
+        <table class="table table-bordered text-center mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Loại sản phẩm</th>
+                    <th>Thời gian bảo hành</th>
+                    <th>Điều kiện bảo hành</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Chó</td>
+                    <td>12 tháng</td>
+                    <td>Đầy đủ giấy tờ và tiêm phòng</td>
+                </tr>
+                <tr>
+                    <td>Mèo</td>
+                    <td>10 tháng</td>
+                    <td>Đầy đủ giấy tờ và tiêm phòng</td>
+                </tr>
+                <tr>
+                    <td>Thú cưng khác</td>
+                    <td>8 tháng</td>
+                    <td>Đầy đủ giấy tờ</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Đặt hàng & Thanh toán -->
+    <div id="order" class="container content-section">
+        <h2 class="text-center">Đặt hàng & Thanh toán</h2>
+        <p>Quý khách có thể đặt hàng trực tuyến và thanh toán qua các phương thức tiện lợi.</p>
+
+    </div>
+    <!-- Đặt hàng & Thanh toán -->
+    <div id="order-section" class="container content-section" style="display: none;">
+        <h2 class="text-center">Đặt hàng & Thanh toán</h2>
+        <table class="table table-bordered text-center mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá tiền</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Tạo 10 hàng dữ liệu -->
+                <tr>
+                    <td>1</td>
+                    <td>SP25</td>
+                    <td>Chó bò Anh</td>
+                    <td>16.000.000 VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP001')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP001')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>SP26</td>
+                    <td>Golden Retriever</td>
+                    <td>20.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP002')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP002')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>SP27</td>
+                    <td>Chó Husky Sibir</td>
+                    <td>8.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP003')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP003')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>SP28</td>
+                    <td>Chó chăn cừu Đức</td>
+                    <td>20.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP004')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP004')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>SP29</td>
+                    <td>Dobermann</td>
+                    <td>20.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP005')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP005')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>SP30</td>
+                    <td>Shiba Inu</td>
+                    <td>30.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP006')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP006')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>SP31</td>
+                    <td>Mèo LaPerm</td>
+                    <td>20.000.000 VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP007')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP007')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>SP32</td>
+                    <td>Mèo Somali</td>
+                    <td>13.000.000</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP008')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP008')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>SP33</td>
+                    <td>Mèo Angora Thổ Nhĩ Kỳ</td>
+                    <td>35.000.000VND</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP009')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP009')">Hủy</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>SP34</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="buyProduct('SP010')">Mua</button>
+                        <button class="btn btn-danger btn-sm" onclick="cancelOrder('SP010')">Hủy</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+
+    <div id="products" class="container content-section" style="display: block;">
+        <h2 class="text-center">Sản phẩm nổi bật</h2>
+        <div class="mb-4">
+            <input type="text" id="product-title" class="form-control mb-2" placeholder="Tên sản phẩm">
+            <textarea id="product-body" class="form-control mb-2" placeholder="Mô tả sản phẩm"></textarea>
+            <input type="number" id="product-priceprice" class="form-control mb-2" placeholder="Giá tiền">
+            <input type="text" id="product-image-file" class="form-control mb-2" placeholder="URL hình ảnh">
+            <button class="btn btn-success" onclick="addProduct()">Thêm sản phẩm</button>
+        </div>
+        <div id="product-list" class="row"></div>
+    </div>
+    
+    <script>
+        const apiUrl = "https://67e3dc7a2ae442db76d1ebaf.mockapi.io/mago";
+
+        function loadProducts() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => displayProducts(data))
+                .catch(error => console.error("Lỗi tải sản phẩm:", error));
+        }
+
+        function displayProducts(products) {
+            let productHtml = '';
+            products.forEach(product => {
+                const formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price);
+                productHtml += `
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="${product.image}" alt="Hình ảnh sản phẩm" class="img-fluid">
+                            <h5>${product.title}</h5>
+                            <p>${product.body}</p>
+                            <p>${formattedPrice}</p>
+                            <button class="btn btn-primary" onclick="buyProduct('${product.id}')">Mua</button> <!-- Add Buy button -->
+                            <button class="btn btn-danger" onclick="deleteProduct('${product.id}')">Xóa</button>
+                        </div>
+                    </div>`;
+            });
+            document.getElementById('product-list').innerHTML = productHtml;
+        }
+
+        function buyProduct(productId) {
+            alert(`Bạn đã chọn mua sản phẩm với ID: ${productId}`);
+            // Add your logic for handling the purchase here
+        }
+
+        function addProduct() {
+            const title = document.getElementById("product-title").value;
+            const body = document.getElementById("product-body").value;
+            const image = document.getElementById("product-image-file").value;
+            const price = document.getElementById("product-priceprice").value;
+
+            if (!title || !body || !image || !price) {
+                alert("Vui lòng nhập đầy đủ thông tin sản phẩm!");
+                return;
+            }
+
+            fetch(apiUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ title, body, image, price })
+            })
+            .then(response => response.json())
+            .then(() => {
+                alert("Sản phẩm đã được thêm!");
+                loadProducts();
+            })
+            .catch(error => console.error("Lỗi khi thêm sản phẩm:", error));
+        }
+
+        function deleteProduct(productId) {
+            if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+                fetch(`${apiUrl}/${productId}`, { method: "DELETE" })
+                .then(() => {
+                    alert("Sản phẩm đã được xóa!");
+                    loadProducts();
+                })
+                .catch(error => console.error("Lỗi khi xóa sản phẩm:", error));
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadProducts);
+    </script>
+    <!-- Footer -->
+<footer class="bg-light text-dark mt-5 p-4">
+    <div class="container">
+        <div class="row">
+            <!-- Cột 1: Liên hệ -->
+            <div class="col-md-3">
+                <h5 class="fw-bold">LIÊN HỆ</h5>
+                <hr>
+                <p>📍 Trụ sở: số 1, phú Lãm, Hà Đông, Hà Nội</p>
+                <p>📍 Trại Giống:khu 3, Thị Trấn Thường Xuân, Thanh Hóa </p>
+                <p>📞 Hotline: 0974815206</p>
+                <p>🌐 Website: <a href="#">https://Petshop.com</a></p>
+                <p>📧 Email: Petshop@gmail.com</p>
+            </div>
+
+            <!-- Cột 2: Về chúng tôi -->
+            <div class="col-md-3">
+                <h5 class="fw-bold">VỀ CHÚNG TÔI</h5>
+                <hr>
+                <ul class="list-unstyled">
+                    <li><a href="#">Giới thiệu công ty</a></li>
+                    <li><a href="#">Cơ hội nghề nghiệp</a></li>
+                    <li><a href="#">Hợp tác kinh doanh</a></li>
+                    <li><a href="#">Cửa hàng phụ kiện</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 3: Chính sách -->
+            <div class="col-md-3">
+                <h5 class="fw-bold">CHÍNH SÁCH MUA HÀNG</h5>
+                <hr>
+                <ul class="list-unstyled">
+                    <li><a href="#">Mua trả góp</a></li>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Giao nhận & Thanh toán</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 4: Kết nối -->
+            <div class="col-md-3">
+                <h5 class="fw-bold">KẾT NỐI, THANH TOÁN</h5>
+                <hr>
+                <div>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174872.png" width="32"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png" width="32"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="32"></a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
